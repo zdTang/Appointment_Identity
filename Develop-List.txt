@@ -4,10 +4,16 @@
   Also can put it into the "appSettings.development.json"
 
 
-#  
+#  6
   first, create dbContext class (AppDbContext) based on "IdentityDbContext" ==  as we want use Identity tables
   second, Register our own dbContext class into Service Collection
 
 
 	1,  tell the framework we are going to use SQL Server
 	2,  tell the framework how to connect the SQL Server, be aware, the "Configuration" is mapping to 5 levels locations.
+
+# 7-1 1. Add Identity Tables
+  use PM:  Commands:   Add-migration xxxx,    update-database
+  Be aware, if we use "dotnet ef", the command syntax are different
+
+  At this time point, even we have not create any tables, but because Identity has user tables built-in, so that we can do migration and update=database

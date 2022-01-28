@@ -2,3 +2,12 @@
   Create a connection string
   Could put the connection string into the "SECRET" as well
   Also can put it into the "appSettings.development.json"
+
+
+#  
+  first, create dbContext class (AppDbContext) based on "IdentityDbContext" ==  as we want use Identity tables
+  second, Register our own dbContext class into Service Collection
+
+
+	1,  tell the framework we are going to use SQL Server
+	2,  tell the framework how to connect the SQL Server, be aware, the "Configuration" is mapping to 5 levels locations.

@@ -1,0 +1,4 @@
+# 5. Add Connection String in AppSettings
+  Create a connection string
+  Could put the connection string into the "SECRET" as well
+  Also can put it into the "appSettings.development.json"

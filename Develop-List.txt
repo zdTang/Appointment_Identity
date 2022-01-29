@@ -17,3 +17,11 @@
   Be aware, if we use "dotnet ef", the command syntax are different
 
   At this time point, even we have not create any tables, but because Identity has user tables built-in, so that we can do migration and update=database
+
+# 2- 9. Client Side Validations
+
+  To make client side validation work, need several steps:
+  1, View Model add validition Attribute
+  2, View bind View Model, View use validation Tag helper
+  3, View add necessary "ValidationScriptPartial" partial view
+  At this time, all validation happens at Client side.  

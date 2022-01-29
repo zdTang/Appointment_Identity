@@ -30,7 +30,16 @@ namespace Appointment.Services
 
         public List<PatientVM> GetPatientList()
         {
-            throw new System.NotImplementedException();
+            var patients = (from user in _db.Users
+                           join userRole in _db.UserRoles on user.Id equals userRole.UserId
+                           join role in _db.Roles.Where(x => x.Name == Helper.Patient) on userRole.RoleId equals role.Id
+                           // "select" is cast or project
+                           select new PatientVM
+                           {
+                               Id = user.Id,
+                               Name = user.Name
+                           }).ToList();
+            return patients;
         }
     }
 }

@@ -12,7 +12,8 @@ namespace Appointment.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.doctorList=_appointmentService.GetDoctorList();
+            ViewBag.doctorList = _appointmentService.GetDoctorList();
+            ViewBag.PatientList = _appointmentService.GetPatientList();
             return View();
         }
     }

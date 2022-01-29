@@ -20,9 +20,6 @@ namespace Appointment.Controllers
 
         public IActionResult Index()
         {
-
-            var context = this.HttpContext;
-            var data = this.ModelState;
             return View();
         }
 

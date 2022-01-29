@@ -58,3 +58,9 @@
    This error will display to the Summary Validation Slot : <div asp-validation-summary="All" class="text-danger"></div>
    We must have this Slot for display Error on the ModelState Object. Or it doesn't display !
 
+# 3-4. Appointment Service Get Doctors Part 2
+
+  Add Service Layer to access Entity.
+  Dependency Inject the Service
+  Find an Error: didn't use _signInManager to sign in user's role !
+  Use Linq to query users who is Doctor, is there more efficient approach to do it?

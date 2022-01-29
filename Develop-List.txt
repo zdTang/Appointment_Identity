@@ -51,3 +51,10 @@
   When the request come back another time, this value truns to True !
   And the signInManager.IsSignedIn(User) turns to True !
 
+# 16. SignIn SignUp Errors and Logoff
+
+   For Server-side Error, such as user's name and password cannot find in the Database, or SignIn User is not successful due to the database glitch. 
+   We can use "ModelState.AddModelError(string.Empty, "Invalid login attempt !");" to add Error to the ModelState Object
+   This error will display to the Summary Validation Slot : <div asp-validation-summary="All" class="text-danger"></div>
+   We must have this Slot for display Error on the ModelState Object. Or it doesn't display !
+

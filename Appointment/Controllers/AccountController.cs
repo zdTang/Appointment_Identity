@@ -22,9 +22,24 @@ namespace Appointment.Controllers
         }
         public IActionResult Login()
         {
-            var context = this.HttpContext;
-            var data = this.ModelState;
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            // ModelState is aside with HttpContext
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError(string.Empty, "Invalid login attempt !");
+            }
+            return View(model);
         }
 
         public async Task<IActionResult> Register()
@@ -52,16 +67,27 @@ namespace Appointment.Controllers
                     Email = model.Email,
                     Name = model.Name
                 };
-
-                var result=await _userManager.CreateAsync(user);
+                //  Need use "Password" to create new user
+                var result=await _userManager.CreateAsync(user,model.Password);
 
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
+                foreach(var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty,error.Description);
+                }
             }
-            return View();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LogOff()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login","Account");
         }
     }
 }

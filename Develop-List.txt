@@ -64,3 +64,8 @@
   Dependency Inject the Service
   Find an Error: didn't use _signInManager to sign in user's role !
   Use Linq to query users who is Doctor, is there more efficient approach to do it?
+
+# 3-5. Display Doctor DropDown
+  Pay attention to Html helper's syntax.
+  Using ViewBag to pass data to View
+  

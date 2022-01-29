@@ -68,4 +68,9 @@
 # 3-5. Display Doctor DropDown
   Pay attention to Html helper's syntax.
   Using ViewBag to pass data to View
+
+# 3-7. Show modal on calendar selection
+  How Bootstrap modal works?    need read menu carefully
+  Canlendar has a "select" event, which can trigger function.
+  In this function, we display the modal to Cover the underlying message.
   

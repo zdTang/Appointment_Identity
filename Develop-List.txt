@@ -36,3 +36,9 @@
 
 # 2-11. Tag Helper
   Tag helper is better than  Http Helper
+
+# 2-13. Register Post Action Method 
+  After we use "ApplicationUser" to replace "IdentityUser"
+  We should replace several places as well where we use " IdentityUser" as generic type.
+  1, setup.cs     when we register services
+  2, _Loginpartial.cshtml   we DI a SignInManager here!

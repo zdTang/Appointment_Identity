@@ -1,0 +1,17 @@
+﻿
+@*Understand the following line: SignInManager is the Type we need, but this Manager need to know Our User's Type as well*@
+@*That is why we tell it the T is Identity.IdentityUser Type, we use it as our User's Type*@
+@inject Microsoft.AspNetCore.Identity.SignInManager<Microsoft.AspNetCore.Identity.IdentityUser> signInManager
+@*we don't need declare the "User", just use it  *@
+@*Why we can access the "User" here, need make clear!*@
+@if (signInManager.IsSignedIn(User))
+{
+
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Sign In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

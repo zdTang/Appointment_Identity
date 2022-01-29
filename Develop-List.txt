@@ -42,3 +42,12 @@
   We should replace several places as well where we use " IdentityUser" as generic type.
   1, setup.cs     when we register services
   2, _Loginpartial.cshtml   we DI a SignInManager here!
+
+# 15. Sign In Navbar
+
+  In the HttpContext, the "User" property has "IsAuthenticate" property.
+  If it is new user, then this value is "false"
+  After await _signInManager.SignInAsync(user, isPersistent: false)
+  When the request come back another time, this value truns to True !
+  And the signInManager.IsSignedIn(User) turns to True !
+

@@ -53,6 +53,8 @@ namespace Appointment
 
             app.UseRouting();
 
+            app.UseAuthentication();  //  if no this,  After Registration, Logging in will not work !
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -22,6 +22,8 @@ namespace Appointment.Controllers
         }
         public IActionResult Login()
         {
+            var context = this.HttpContext;
+            var data = this.ModelState;
             return View();
         }
 

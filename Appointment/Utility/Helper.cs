@@ -5,9 +5,9 @@ namespace Appointment.Utility
 {
     public static class Helper
     {
-        static readonly string Admin = "Admin";
-        static readonly string Patient = "Patient";
-        static readonly string Doctor = "Doctor";
+        static public readonly string Admin = "Admin";
+        static public readonly string Patient = "Patient";
+        static public readonly string Doctor = "Doctor";
 
 
         public static List<SelectListItem> GetRolesForDropDown()

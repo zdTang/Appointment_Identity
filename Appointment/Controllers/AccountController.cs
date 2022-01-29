@@ -1,5 +1,6 @@
 ﻿using Appointment.Models;
 using Appointment.Models.ViewModels;
+using Appointment.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -24,8 +25,17 @@ namespace Appointment.Controllers
             return View();
         }
 
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
+            // check if necessary roles have been created 
+            // if not, then we will create the role here !
+            // Deffer from View Model. But the Key and Value of this "ASPNETROLES" should map to the RegisterViewModel' RoleName field 
+            if(!_roleManager.RoleExistsAsync(Helper.Admin).GetAwaiter().GetResult())
+            {
+                await _roleManager.CreateAsync(new IdentityRole(Helper.Admin));
+                await _roleManager.CreateAsync(new IdentityRole(Helper.Doctor));
+                await _roleManager.CreateAsync(new IdentityRole(Helper.Patient));
+            }
             return View();
         }
         [HttpPost]

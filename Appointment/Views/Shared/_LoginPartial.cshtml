@@ -11,7 +11,9 @@
 else
 {
     <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Sign In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        @*<li>@Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Sign In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+        <a class="nav-link text-white" id="registerLink" asp-controller="Account" asp-action="Register"> Register</a>
+        <a class="nav-link text-white" id="loginLink" asp-controller="Account" asp-action="Login"> Sign In </a>
     </ul>
 }

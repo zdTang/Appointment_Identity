@@ -32,3 +32,7 @@
   When server get a Request, based the User property of the Request, the Server will generate different _layout view.
   As the Web server catch the request, it will create a HttpDbContext object, it also create a "claimPrinciple" to as the "User" property.
   From the "User" property of the HttpContext, we can know the user's status.
+
+
+# 2-11. Tag Helper
+  Tag helper is better than  Http Helper

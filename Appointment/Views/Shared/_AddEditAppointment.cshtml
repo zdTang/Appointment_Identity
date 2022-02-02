@@ -19,7 +19,15 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Select Patient</label>
+                       @*Notice how to create a drop-down list with SELECT and asp-items*@
+                       @*Here is "SelectList" other than "SelectListItem"*@
                         <select id="patientId" asp-items="@(new SelectList(ViewBag.PatientList,"Id","Name"))" class="form-control"></select>
+                    </div>
+                      
+                    <div class="form-group">
+                        <label for="title">Duration</label>
+                        @*data is from List<SelectListItem> GetTimeDropDown()*@
+                        <select id="duration" asp-items="ViewBag.Duration" class="form-control"></select>
                     </div>
                 </div>
             </form>

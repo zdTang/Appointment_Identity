@@ -14,6 +14,7 @@ namespace Appointment.Controllers
         {
             ViewBag.doctorList = _appointmentService.GetDoctorList();
             ViewBag.PatientList = _appointmentService.GetPatientList();
+            ViewBag.Duration = Utility.Helper.GetTimeDropDown();
             return View();
         }
     }

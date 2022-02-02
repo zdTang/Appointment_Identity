@@ -1,13 +1,10 @@
-﻿
-<div class="modal fade" role="dialog" id="appointmentInput" data-backdrop="static" data-keyboard="false">
+﻿<div class="modal fade" role="dialog" id="appointmentInput" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-               <form id="apointmentForm" autocomplete="off" novalidate="novalidate">
-                
+            <form id="apointmentForm" autocomplete="off" novalidate="novalidate">
                 <div class="modal-header">
                     <h4 class="modal-title">Add/Edit Appointment</h4>
                 </div>
-                
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="title">Title</label>
@@ -19,31 +16,20 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Select Patient</label>
-                       @*Notice how to create a drop-down list with SELECT and asp-items*@
-                       @*Here is "SelectList" other than "SelectListItem"*@
                         <select id="patientId" asp-items="@(new SelectList(ViewBag.PatientList,"Id","Name"))" class="form-control"></select>
                     </div>
-                      
+
                     <div class="form-group">
                         <label for="title">Duration</label>
-                        @*data is from List<SelectListItem> GetTimeDropDown()*@
                         <select id="duration" asp-items="ViewBag.Duration" class="form-control"></select>
                     </div>
-                    @*a hidden field used to conserve state*@
-                    <input type="hidden" id="id"/>
-
-                    @* This is a normal Button, but here we will operate the modal
-                    <div class="form-group">
-                         <input  type="submit" class="form-control alert-primary"/>
-                    </div>*@
-
-
+                    <input type="hidden" id="id" />
                 </div>
-                <div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onClick="onCloseModal();">Close</button>
-                        <button type="button" id="btnSubmit" class="btn btn-success" onClick="onSubmitForm();">Submit</button>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="onCloseModal();">Close</button> &nbsp;
+                    <button type="button" id="btnSubmit" class="btn btn-success" onclick="onSubmitForm();">Submit</button>
+
+
                 </div>
             </form>
         </div>

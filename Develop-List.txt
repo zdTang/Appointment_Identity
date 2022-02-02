@@ -80,3 +80,6 @@
   2, the "script-custome-calendar.js" is attached with _Layout.cshtml, so that we could add Script over there.
   3, _AddEditAppointment.cshtml is created with bootstrap with "modal", try to make clear how it works. 
   4, use $("#appointmentInput").modal("show") to show the "Input" partial view and the underlying content will be covered by Modal and be un-touchable.
+
+# About input-Model binding.
+  the <input> must have "name" property, or binding will not work.

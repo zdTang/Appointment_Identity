@@ -1,5 +1,7 @@
-﻿using Appointment.Services;
+﻿using Appointment.Models.InputModels;
+using Appointment.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Appointment.Controllers
 {
@@ -15,6 +17,15 @@ namespace Appointment.Controllers
             ViewBag.doctorList = _appointmentService.GetDoctorList();
             ViewBag.PatientList = _appointmentService.GetPatientList();
             ViewBag.Duration = Utility.Helper.GetTimeDropDown();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Index(AddAppointmentIM appointment)
+        {
+            ViewBag.doctorList = _appointmentService.GetDoctorList();
+            ViewBag.PatientList = _appointmentService.GetPatientList();
+            ViewBag.Duration = Utility.Helper.GetTimeDropDown();
+            Console.WriteLine("ok");
             return View();
         }
     }

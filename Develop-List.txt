@@ -83,3 +83,10 @@
 
 # About input-Model binding.
   the <input> must have "name" property, or binding will not work.
+
+# use partial Modal view,  can Post data to Server, but front End validation doesn't work
+  use View Model binding, But validation doesn't work.
+  Will go back to work on valiation later.
+  It looks like the validation for partial view is different. will fix it later!
+
+https://stackoverflow.com/questions/51779944/how-to-display-partial-view-model-errors-when-partial-view-is-in-the-view

@@ -1,27 +1,38 @@
-﻿<div class="modal fade" role="dialog" id="appointmentInput" data-backdrop="static" data-keyboard="false">
+﻿@using Appointment.Models.ViewModels
+@model AddAppointmentVM
+
+<div class="modal fade" role="dialog" id="appointmentInput" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="apointmentForm" autocomplete="off" novalidate="novalidate" asp-controller="Appointment" asp-action="Index">
+            <form id="apointmentForm" autocomplete="off" asp-controller="Appointment" asp-action="Index" method="post" data-ajax="true" data-ajax-update="#partialform" data-ajax-mode="replace">
                 <div class="modal-header">
                     <h4 class="modal-title">Add/Edit Appointment</h4>
                 </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" maxlength="100" class="form-control" id="title" name="Title"/>
+                        <label asp-for="Title">Title</label>
+                        <input asp-for="Title"  name="Title" id="Title" class="form-control" data-ajax-update="Title"/>
+                        <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="description">Descriptions</label>
-                        <textarea type="text" name="Description" class="form-control" id="description"></textarea>
+                        <label asp-for="Description">Descriptions</label>
+                        
+                        <input asp-for="Description" id="Description" name="Description" class="form-control" data-ajax-update="Description"/>
+                        <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="patientId">Select Patient</label>
-                        <select id="patientId" name="Patient" asp-items="@(new SelectList(ViewBag.PatientList,"Id","Name"))" class="form-control"></select>
+                        <label asp-for="Patient">Select Patient</label>
+                      
+                        <select asp-for="Patient"  name="Patient" id="Patient" data-ajax-update="Patient" asp-items="@(new SelectList(ViewBag.PatientList,"Id","Name"))" class="form-control" ></select>
+                        <span asp-validation-for="Patient" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="duration">Duration</label>
-                        <select id="duration" asp-items="ViewBag.Duration" name="Duration" class="form-control"></select>
+                        <label asp-for="Duration">Duration</label>
+                        <select asp-for="Duration" name="Duration" id="Duration" data-ajax-update="Duration" class="form-control" asp-items="ViewBag.Duration" ></select>
+                        <span asp-validation-for="Duration" class="text-danger"></span>
+                        
                     </div>
                     <input type="hidden" id="id" />
                 </div>
@@ -36,3 +47,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

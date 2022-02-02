@@ -73,4 +73,10 @@
   How Bootstrap modal works?    need read menu carefully
   Canlendar has a "select" event, which can trigger function.
   In this function, we display the modal to Cover the underlying message.
-  
+
+# 3-9 Modal for Add_Edit Appointment Part 2
+
+  1, Notice how to add event in the View.  "onClick"
+  2, the "script-custome-calendar.js" is attached with _Layout.cshtml, so that we could add Script over there.
+  3, _AddEditAppointment.cshtml is created with bootstrap with "modal", try to make clear how it works. 
+  4, use $("#appointmentInput").modal("show") to show the "Input" partial view and the underlying content will be covered by Modal and be un-touchable.

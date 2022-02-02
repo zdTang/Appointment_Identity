@@ -29,6 +29,21 @@
                         @*data is from List<SelectListItem> GetTimeDropDown()*@
                         <select id="duration" asp-items="ViewBag.Duration" class="form-control"></select>
                     </div>
+                    @*a hidden field used to conserve state*@
+                    <input type="hidden" id="id"/>
+
+                    @* This is a normal Button, but here we will operate the modal
+                    <div class="form-group">
+                         <input  type="submit" class="form-control alert-primary"/>
+                    </div>*@
+
+
+                </div>
+                <div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onClick="onCloseModal();">Close</button>
+                        <button type="button" id="btnSubmit" class="btn btn-success" onClick="onSubmitForm();">Submit</button>
+                    </div>
                 </div>
             </form>
         </div>

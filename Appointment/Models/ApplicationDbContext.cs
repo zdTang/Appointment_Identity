@@ -7,9 +7,11 @@ namespace Appointment.Models
     // if we use customized IdentityUser, we should tell the DbContext
     public class ApplicationDbContext:IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
-        {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options) { }
+        
+        // https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/dbsets
+        // It seems that no Virtual is need
+        public DbSet<Appoint> Appointments { get; set; }
 
-        }
     }
 }

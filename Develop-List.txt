@@ -80,3 +80,9 @@
   2, the "script-custome-calendar.js" is attached with _Layout.cshtml, so that we could add Script over there.
   3, _AddEditAppointment.cshtml is created with bootstrap with "modal", try to make clear how it works. 
   4, use $("#appointmentInput").modal("show") to show the "Input" partial view and the underlying content will be covered by Modal and be un-touchable.
+
+# 3-12. Appointment and View Model
+  1, add "appoint" model. at first, I used "Appointment" which caused weired Issue. Finally I found it is because the "Application" is the project name.
+  2, add "appointmentVM" View model
+  3, add DbSet<appoint> to DbContext class and do migration
+  It looks like for DbSet, no "Virtual" is needed.

@@ -95,3 +95,7 @@
   Get data from page.  As we are using partial view. we don't want to reload the page by using "Post", we can use jQuery to get the data from 
   the HTML page and use AJAX to post to backend.
   Be care of those ID name must match totally.
+
+# 3-16  Add first appointment
+  Be cautious about those Jquery, error prone.
+  Study the Jqery pattern, check how to deal with Success and Error confidently.

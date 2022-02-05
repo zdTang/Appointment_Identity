@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace Appointment.Controllers.API
 {
-    [Route("api/[controller]")]
+    [Route("api/Appointment")]
     [ApiController]
     public class AppointmentApiController : ControllerBase
     {

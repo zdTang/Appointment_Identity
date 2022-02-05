@@ -3,7 +3,14 @@
  to all the views which use _Layout.cshtml
  ============================*/
 
+var routeURL = location.protocol + "//" + location.host;
+
 $(document).ready(function () {
+
+    $("#appointmentDate").kendoDateTimePicker({
+        value: new Date(),
+        dateInput:false
+    })
     InitializeCalendar();
 })
 
@@ -47,22 +54,80 @@ function onCloseModal() {
     $("#appointmentInput").modal("hide");
 }
 
+/*===============================
+ * Function Name: onSubmitForm
+ * 
+ ===============================*/
+
 const onSubmitForm = () => {
-    
-    // construct Data to post to Server
-    // Here we are using JS object notation
-    // JSON support int, string, bool, array, object....so that we convert string to Int here?
-    var requestData = {
-        Id: parseInt($("#id").val()),         // This is a hidden value
-        Title: $("#title").val(),
-        Description: $("#description").val(),
-        StartDate: $("#appointmentDate").val(),
-        Duration: $("#duration").val(),
-        DoctorId: $("#doctorId").val(),       // this value is taken from Master View
-        PatientId: $("#patientId").val(),
+
+    if (checkValidation()) {
+        // construct Data to post to Server
+        // Here we are using JS object notation
+        // JSON support int, string, bool, array, object....so that we convert string to Int here?
+        var requestData = {
+            Id: parseInt($("#id").val()),         // This is a hidden value
+            Title: $("#title").val(),
+            Description: $("#description").val(),
+            StartDate: $("#appointmentDate").val(),
+            Duration: $("#duration").val(),
+            DoctorId: $("#doctorId").val(),       // this value is taken from Master View
+            PatientId: $("#patientId").val(),
+        }
+        console.log(JSON.stringify(requestData));
+        var URL = routeURL + "/api/Appointment/SaveCalendarData";
+        console.log(URL);
+
+        $.ajax({
+            url: URL,
+            type: 'POST',
+            data: JSON.stringify(requestData),
+            contentType: "application/json",
+            success: function (response) {
+                if (response.status === 1 || response.status === 2) {
+                    $.notify(response.message, "success");
+                    onCloseModal();
+                }
+                else {
+                    $.notify(response.message, "error");
+                }
+            },
+            error: function (xhr) {
+                $.notify("Error", "error");
+            }
+        })
+    }
+}
+
+const checkValidation=()=> {
+    var isValid = true;
+    //  title
+    if ($("#title").val() === undefined || $("#title").val() === "") {
+        isValid = false;
+        $("#title").addClass("error");
+    }
+    else {
+        $("#title").removeClass("error");
+    }
+    //  description
+    if ($("#description").val() === undefined || $("#description").val() === "") {
+        isValid = false;
+        $("#description").addClass("error");
+    }
+    else {
+        $("#description").removeClass("error");
     }
 
-    console.log(requestData);
-    console.log(JSON.stringify(requestData));
-    onCloseModal();
+    //  appointmentDate
+    if ($("#appointmentDate").val() === undefined || $("#appointmentDate").val() === "") {
+        isValid = false;
+        $("#appointmentDate").addClass("error");
+    }
+    else {
+        $("#appointmentDate").removeClass("error");
+    }
+
+    
+
+    return isValid;
 }

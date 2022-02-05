@@ -27,11 +27,9 @@ function InitializeCalendar() {
                     onShowModal(event, null);
                 }
             });
+            calendar.render();
         }
         
-        calendar.render();
-
-
     }
     catch (e) {
         alert(e);

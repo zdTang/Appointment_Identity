@@ -1,8 +1,10 @@
 ﻿using Appointment.Models;
 using Appointment.Models.ViewModels;
 using Appointment.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Appointment.Services
 {
@@ -13,6 +15,40 @@ namespace Appointment.Services
         {
             _db = db;
         }
+
+        public async Task<int> AddUpdate(AppointmentVM model)
+        {
+            var startDate = DateTime.Parse(model.StartDate);
+            var endDate = DateTime.Parse(model.StartDate).AddMinutes(Convert.ToDouble(model.Duration));
+
+            if (model != null && model.Id > 0)
+            {
+                //update, Model has Id 
+                return 1;
+            }
+            else
+            {
+                // create
+                // Can we use Automapper here ?
+                var appointment = new Appoint
+                {
+                    Title = model.Title,
+                    StartDate = startDate,
+                    EndDate = endDate,
+                    Description = model.Description,
+                    Duration = model.Duration,
+                    DoctorId = model.DoctorId,
+                    PatientId = model.PatientId,
+                    AdminId = model.AdminId,
+                    IsDoctorApproved = model.IsDoctorApproved,
+                };
+                _db.Appointments.Add(appointment);
+                await _db.SaveChangesAsync();
+                return 2;       // Return a magic number?
+            }
+
+        }
+
         public List<DoctorVM> GetDoctorList()
         {
             // Using this pattern must import "Linq"

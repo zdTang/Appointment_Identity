@@ -86,3 +86,7 @@
   2, add "appointmentVM" View model
   3, add DbSet<appoint> to DbContext class and do migration
   It looks like for DbSet, no "Virtual" is needed.
+
+# 3-13   Create Appointment Service
+  1, all data from the Form are string ??? such as DataTime? how about BOOL?
+  2, how to handle the return value of the EntityFramework Methods?  Such as update fail?

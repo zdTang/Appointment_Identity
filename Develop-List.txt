@@ -90,3 +90,8 @@
 # 3-13   Create Appointment Service
   1, all data from the Form are string ??? such as DataTime? how about BOOL?
   2, how to handle the return value of the EntityFramework Methods?  Such as update fail?
+
+# 3- 15. Build data for API call
+  Get data from page.  As we are using partial view. we don't want to reload the page by using "Post", we can use jQuery to get the data from 
+  the HTML page and use AJAX to post to backend.
+  Be care of those ID name must match totally.

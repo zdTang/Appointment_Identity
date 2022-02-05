@@ -1,6 +1,9 @@
-﻿using Appointment.Services;
+﻿using Appointment.Models.ViewModels;
+using Appointment.Services;
+using Appointment.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Security.Claims;
 
 namespace Appointment.Controllers.API
@@ -23,9 +26,29 @@ namespace Appointment.Controllers.API
             //var role2 = HttpContext.User.FindFirstValue(ClaimTypes.Role);// Can access HttpContext directly actually
         }
 
-        public IActionResult Index()
+        [HttpPost]
+        [Route("SaveCalendarData")]
+        public IActionResult SaveCalendarData(AppointmentVM data)
         {
-            return Ok();
+            var commonResponse = new CommonResponse<int>();
+            try
+            {
+                commonResponse.status = _appointmentService.AddUpdate(data).Result;
+                if (commonResponse.status == 1)
+                {
+                    commonResponse.message = Helper.appointmentUpdated;
+                }
+                if (commonResponse.status == 2)
+                {
+                    commonResponse.message = Helper.appointmentAdded;
+                }
+            }
+            catch(Exception e)
+            {
+                commonResponse.message = e.Message;
+                commonResponse.status = Helper.failure_code;
+            }
+            return Ok(commonResponse);
         }
        
     }

@@ -48,6 +48,21 @@ function onCloseModal() {
 }
 
 const onSubmitForm = () => {
-    console.log("Submit !!");
+    
+    // construct Data to post to Server
+    // Here we are using JS object notation
+    // JSON support int, string, bool, array, object....so that we convert string to Int here?
+    var requestData = {
+        Id: parseInt($("#id").val()),         // This is a hidden value
+        Title: $("#title").val(),
+        Description: $("#description").val(),
+        StartDate: $("#appointmentDate").val(),
+        Duration: $("#duration").val(),
+        DoctorId: $("#doctorId").val(),       // this value is taken from Master View
+        PatientId: $("#patientId").val(),
+    }
+
+    console.log(requestData);
+    console.log(JSON.stringify(requestData));
     onCloseModal();
 }

@@ -99,3 +99,6 @@
 # 3-16  Add first appointment
   Be cautious about those Jquery, error prone.
   Study the Jqery pattern, check how to deal with Success and Error confidently.
+
+# 3-17 Add a validation 
+  Not very good, just works.

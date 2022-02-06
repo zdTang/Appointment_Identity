@@ -15,7 +15,8 @@ namespace Appointment.Services
         {
             _db = db;
         }
-
+        // this volite "Single Responsibility Principle", will not easy for testing
+        // will refector it later.
         public async Task<int> AddUpdate(AppointmentVM model)
         {
             var startDate = DateTime.Parse(model.StartDate);
@@ -49,6 +50,8 @@ namespace Appointment.Services
 
         }
 
+       
+
         public List<DoctorVM> GetDoctorList()
         {
             // Using this pattern must import "Linq"
@@ -76,6 +79,36 @@ namespace Appointment.Services
                                Name = user.Name
                            }).ToList();
             return patients;
+        }
+
+        // Get all appointment based on PatientId
+        // Todo: Need test if it works properly
+        public List<AppointmentVM> PatientsEventsById(string patientId)
+        {
+            return _db.Appointments.Where(x => x.PatientId == patientId).Select(c => new AppointmentVM
+            {
+                Id = c.Id,
+                Description = c.Description,
+                StartDate = c.StartDate.ToString("yyyy-mm-dd HH:mm:ss"),
+                Title = c.Title,
+                Duration = c.Duration,
+                IsDoctorApproved = c.IsDoctorApproved
+            }).ToList();
+        }
+
+        // Get all appointment based on DoctorId
+        // Todo: Need test if it works properly
+        public List<AppointmentVM> DoctorsEventsById(string doctorId)
+        {
+            return _db.Appointments.Where(x => x.DoctorId == doctorId).Select(c => new AppointmentVM
+            {
+                Id = c.Id,
+                Description = c.Description,
+                StartDate = c.StartDate.ToString("yyyy-mm-dd HH:mm:ss"),
+                Title = c.Title,
+                Duration = c.Duration,
+                IsDoctorApproved = c.IsDoctorApproved
+            }).ToList();
         }
     }
 }

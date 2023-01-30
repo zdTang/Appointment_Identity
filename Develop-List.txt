@@ -102,3 +102,7 @@
 
 # 3-17 Add a validation 
   Not very good, just works.
+
+# 4-3 
+  About how to setup Ajax parameter object
+  https://api.jquery.com/jquery.ajax/

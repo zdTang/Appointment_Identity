@@ -32,6 +32,41 @@ function InitializeCalendar() {
                 editable: false,
                 select: function (event) {
                     onShowModal(event, null);
+                },
+                events: function (fetchInfo, successCallback, failureCallback) {
+                    // pass params via URL, Is this a good approach?
+                    // How many approaches we can retrive param from the URL?
+                    // https://api.jquery.com/jquery.ajax/
+                    let URL = routeURL + "/api/Appointment/GetCalendarData?doctorId=" + $("#doctorId").val();
+                    console.log(URL);
+                    $.ajax({
+                        url: URL,
+                        type: 'GET',
+                        dataType: "json",
+                        success: function (response) {
+                            console.log("getEvent: ", response);
+                            var event = [];
+                            if (response.status === 1) {
+                                $.each(response.dataEnum, function (i, data) {
+                                    event.push({
+                                        title: data.title,
+                                        description: data.description,
+                                        start: data.startDate,
+                                        end: data.endDate,
+                                        backgroundColor: data.isDoctorApproved ? "#28a745" : "#dc3545",
+                                        borderColor: "#162466",
+                                        textColor:"white",
+                                        id:data.id
+                                    })
+                                })
+                            }
+                            console.log("getEvent: ", event);
+                            successCallback(event);
+                        },
+                        error: function (xhr) {
+                            $.notify("Error", "error");
+                        }
+                    })
                 }
             });
             calendar.render();
@@ -75,8 +110,8 @@ const onSubmitForm = () => {
             PatientId: $("#patientId").val(),
         }
         console.log(JSON.stringify(requestData));
-        var URL = routeURL + "/api/Appointment/SaveCalendarData";
-        console.log(URL);
+        let URL = routeURL + "/api/Appointment/SaveCalendarData";
+        //console.log(URL);
 
         $.ajax({
             url: URL,
